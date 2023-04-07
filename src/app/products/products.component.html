@@ -1,0 +1,70 @@
+<div class="input-group">
+  <span class="input-group-text">UserName</span>
+  <input type="text"  class="form-control" [(ngModel)]="ClientName">
+</div>
+<div [id]="textId">Wellcome {{ClientName}}</div>
+
+      <div class="card " style="width: 27rem;margin-left: 10px;">
+        <img [src]="StoreLogo" class="card-img-top" height="300px" alt="...">
+        <div class="card-body">
+          <h1 class="card-title">{{Storename | uppercase}}</h1>
+          <p class="card-text">We offer an explicit discount of: <span *ngIf="isdiscount">{{Discount|percent}}</span></p>
+
+        </div>
+      </div>
+      <table class="table" *ngIf=" IsPurshased else elseBlock  "  >
+        <!-- ||this.productservice.showproducts  -->
+        <thead>
+          <tr >
+            <th scope="col">Name</th>
+            <th scope="col">price</th>
+            <th scope="col">Image</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of ProductList" 
+          [class.bg-secondary]="selectedname==product.Name" (mousemove)="selectedname=product.Name"
+          >
+            <td >{{product?.Name}}</td>
+            <td >{{product.Price}}</td>
+            <td ><img src={{product.Img}} style="height: 100px;"/></td>
+            <td><button type="button" class="btn btn-danger float-end" (click)="Buyproduct()">Buy</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #elseBlock>
+        <h2>
+          Thanks for purchasing from our Store {{ClientName}}. 
+        </h2>
+    </ng-template> 
+    <ng-template #elseBlock2>
+      
+  </ng-template> 
+  <button class="btn btn-primary" (click)="WithDiscount()" >Products with discount</button>
+  <button class="btn btn-primary" style="margin: 20px;" (click)="WithoutDiscount()">Products without discount</button>
+
+  <router-outlet></router-outlet>
+
+
+    <!-- ------------------- child--------------------------------
+    <app-child [products]="ProductList" (emittproducts)="showproducts($event)"></app-child>
+    ----------------------render from child---------------------------- -->
+    <!-- <table class="table">
+      <thead>
+        <tr >
+          <th scope="col">Name</th>
+          <th scope="col">price</th>
+          <th scope="col">Image</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of ProductListfromchild" 
+        [class.bg-secondary]="selectedname==product.Name" (mousemove)="selectedname=product.Name"
+        >
+          <td >{{product?.Name}}</td>
+          <td >{{product.Price}}</td>
+          <td ><img src={{product.Img}} style="height: 100px;"/></td>
+          <td><button type="button" class="btn btn-danger float-end" (click)="Buyproduct()">Buy</button></td>
+        </tr>
+      </tbody>
+    </table> -->

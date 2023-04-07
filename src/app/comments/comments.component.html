@@ -1,0 +1,12 @@
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let comment of CommentsListofpost" >
+      <div class="card">
+        <div class="card-header">ID: {{comment.id}}</div>
+      <div class="card-body">
+        <h5 class="card-title">{{comment.name}}</h5>
+      <p href="#" class="card-link">{{comment.body}}</p>
+      </div>
+      </div>
+    </div>
+
+  </div>

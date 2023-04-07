@@ -1,0 +1,75 @@
+<div class="container">
+    <form class="mx-1 mx-md-4" [formGroup]="NotesForm" (ngSubmit)="submitData()">
+        <div class="d-flex flex-row align-items-center mb-4">
+          <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+          <div class="form-outline flex-fill mb-0">
+            <input [class.is-invalid]="Name?.invalid &&Name?.touched"  type="text" id="form3Example1c" formControlName="name" name="name" class="form-control" />
+            <label class="form-label" for="form3Example1c">Name</label>
+            <div *ngIf="Name?.errors&&Name?.touched">
+              <small *ngIf="Name?.errors?.['required']">Name is required</small>
+              <small  *ngIf="Name?.errors?.['forbiddenName']">{{Name?.errors?.['forbiddenName'].value}} is not allowed</small>
+            </div> 
+          </div>
+        </div>
+
+        <div class="d-flex flex-row align-items-center ">
+            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+            <div class="form-outline flex-fill mb-0">
+                <select  formControlName="product" class="form-select" id="form3Example4cd" [(ngModel)]="productname"   name="product" >
+                    <option value={{product?.Name}}  *ngFor="let product of ProductList"  >{{product?.Name}}</option>
+                  </select>
+                  <label class="form-label" for="form3Example4cd">Choose Product</label>
+            </div>
+          </div>
+          <div class="d-flex flex-row align-items-center mb-4">
+            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+            <div class="form-outline flex-fill mb-0">
+            <input type="checkbox"
+                   (click)="setDiscountValidation()"
+                   formControlName="checkdiscount"
+                   class="form-check-input">
+             <label class="form-check-label">Does this product containd discount</label>   
+            </div>   
+        </div>
+
+        <div class="d-flex flex-row align-items-center mb-4" *ngIf="checkedvalue==true">
+          <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+          <div class="form-outline flex-fill mb-0">
+            <input  formControlName="discount" [(ngModel)]="productdiscount" step="0.01"  type="number" id="form3Example3c" class="form-control" name="discount" />
+            <label class="form-label" for="form3Example3c">Discount</label>
+            <div *ngIf="Discount?.errors&&Discount?.touched">
+              <small *ngIf="Discount?.errors?.['required']">Discount is required</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-row align-items-center mb-4">
+            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+            <div class="form-outline flex-fill mb-0">
+              <input [class.is-invalid]="Comment?.invalid &&Comment?.touched"  type="text" id="form3Example1c" formControlName="comment" name="comment" class="form-control" />
+              <label class="form-label" for="form3Example1c">Comment</label>
+            </div>
+          </div>
+          
+
+          <div class="d-flex flex-row align-items-center mb-4" formArrayName="aleternativecomment"
+           *ngFor="let comment of aleternativeComment.controls; let i=index">
+            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+            <div class="form-outline flex-fill mb-0" >
+            <label>Alternative Comment # {{i+1}}</label>
+            <input type="text" class="form-control" [formControlName]="i">
+            <button (click)="deletecomment(i)" class="btn btn-danger ">delete</button>
+            </div>
+            <br>
+          </div>
+        <button (click)="addAlternativecomment()" class="btn btn-success float-right">Add New Comment</button>
+
+        
+        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+          <button type="submit" class="btn btn-primary btn-lg" >Submit</button>
+        </div>
+
+      </form>
+</div>
+
+

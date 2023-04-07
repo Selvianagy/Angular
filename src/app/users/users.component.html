@@ -1,0 +1,15 @@
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let user of UsersList" >
+      <div class="card">
+        <img class="card-img-top" src="../assets/Photo_banner/user.png" alt="Card image cap" style="width: 200px; height: 200px;">
+      <div class="card-body">
+        <h5 class="card-title">{{user.name}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{user.username}}</h6>
+      
+      <a href="#" class="card-link">{{user.email}}</a>
+      </div>
+      </div>
+    </div>
+
+  </div>

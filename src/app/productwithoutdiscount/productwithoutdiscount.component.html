@@ -1,0 +1,18 @@
+<table class="table"    >
+    <!-- ||this.productservice.showproducts  -->
+    <thead>
+      <tr >
+        <th scope="col">Name</th>
+        <th scope="col">price</th>
+        <th scope="col">Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of ProductList" 
+      >
+        <td >{{product?.Name}}</td>
+        <td >{{product.Price}}</td>
+        <td ><img src={{product.Img}} style="height: 100px;"/></td>
+      </tr>
+    </tbody>
+  </table>
